@@ -1,0 +1,84 @@
+### Add Resume
+POST http://localhost:8080/resume
+Content-Type: application/json
+
+{
+  "design": "Design example",
+  "name": "John Doe",
+  "photo": "http://example.com/photo.jpg",
+  "description": "A sample resume",
+  "address": "123 Main St",
+  "contact": {
+    "email": "john.doe@example.com",
+    "portofolioWeb": "http://example.com/portfolio",
+    "linkedin": "http://linkedin.com/in/johndoe",
+    "phone": "123-456-7890"
+  },
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "ABC Corp",
+      "description": "Worked on various projects",
+      "startDate": "2020-01-01",
+      "endDate": "2022-01-01",
+      "link": "http://example.com/project"
+    },
+    {
+      "title": "Software Architect",
+      "company": "ABC Corp",
+      "description": "Being engineer",
+      "startDate": "2022-01-01",
+      "endDate": "2024-01-01",
+      "link": "http://example.com/project"
+    }
+  ],
+  "education": [
+    {
+      "title": "Bachelor of Science",
+      "school": "XYZ University",
+      "description": "Studied computer science",
+      "startDate": "2015-01-01",
+      "endDate": "2019-01-01"
+    },
+    {
+      "title": "Magister of Science",
+      "school": "UAD University",
+      "description": "Studied computer engineer",
+      "startDate": "2019-01-01",
+      "endDate": "2021-01-01"
+    }
+  ],
+  "portofolio": [
+    {
+      "title": "Project A",
+      "role": "Developer",
+      "description": "Developed a web application",
+      "startDate": "2021-01-01",
+      "endDate": "2021-12-31",
+      "link": "http://example.com/project-a"
+    },
+    {
+      "title": "Project B",
+      "role": "Game Dev",
+      "description": "Developed a Game application",
+      "startDate": "2021-01-01",
+      "endDate": "2021-12-31",
+      "link": "http://example.com/project-b"
+    }
+  ],
+  "skills": [
+    {
+      "id": 1
+    }
+  ],
+  "status": "DRAFT"
+}
+
+### Get All Resumes
+GET http://localhost:8080/resume
+Content-Type: application/json
+
+
+### Get Resume By ID
+GET http://localhost:8080/resume/1
+Content-Type: application/json
