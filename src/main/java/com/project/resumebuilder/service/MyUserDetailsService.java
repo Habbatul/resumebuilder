@@ -1,5 +1,6 @@
 package com.project.resumebuilder.service;
 
+import com.project.resumebuilder.dto.authreq.RegisterRequest;
 import com.project.resumebuilder.entity.User;
 import com.project.resumebuilder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,12 @@ public class MyUserDetailsService implements UserDetailsService {
         );
     }
 
-    public void save(User user){
+    public void save(RegisterRequest registerUser){
+        User user = User.builder()
+                .username(registerUser.getUsername())
+                .password(registerUser.getPassword())
+                .role("USER")
+                .build();
         userRepository.save(user);
     }
 }

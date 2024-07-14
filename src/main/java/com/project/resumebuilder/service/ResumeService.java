@@ -35,39 +35,42 @@ public class ResumeService {
     @Autowired
     SkillsRepository skillsRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Transactional(readOnly = true)
-    public ResumeResponse getResumeById(Integer id){
-        Resume resume = resumeRepository.findById(id).orElseThrow(()->
+    public ResumeResponse getResumeById(Integer id, String userUsername){
+        Resume resume = resumeRepository.findByIdAndUser_Username(id, userUsername).orElseThrow(()->
                 new ResponseStatusException(HttpStatus.BAD_REQUEST, "dari id tersebut tidak ditemukan apapun bossq"));
         return convertResumeToResumeResponse(resume);
     }
 
     @Transactional(readOnly = true)
-    public List<ResumeResponse> getResume(){
-        List<Resume> resume = resumeRepository.findAll();
+    public List<ResumeResponse> getResume(String userUsername){
+        List<Resume> resume = resumeRepository.findResumeByUser_Username(userUsername);
         return resume.stream().map(this::convertResumeToResumeResponse).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public ResumePublishResponse getPublicResume(){
-        Resume resume = resumeRepository.findResumeByStatus(Status.PUBLIC).orElseThrow(()->
+    public ResumePublishResponse getPublicResume(Integer id){
+        Resume resume = resumeRepository.findResumeByStatusAndId(Status.PUBLIC, id).orElseThrow(()->
                 new ResponseStatusException(HttpStatus.BAD_REQUEST, "Belum ada yang dipublik bossq"));
         return convertResumeToResumePublishResponse(resume);
     }
 
     @Transactional
-    public String updatePublishStatus(Integer id){
-        resumeRepository.findResumeIdByStatus(Status.PUBLIC)
-                .ifPresent(resumeId ->  resumeRepository.updateStatusResume(Status.DRAFT, resumeId));
+    public String updatePublishStatus(Integer id, String userUsername){
+        resumeRepository.findResumeIdByStatus(Status.PUBLIC, userUsername)
+                .ifPresent(resumeId ->  resumeRepository.updateStatusResume(Status.DRAFT, resumeId, userUsername));
 
-        resumeRepository.updateStatusResume(Status.PUBLIC, id);
+        resumeRepository.updateStatusResume(Status.PUBLIC, id, userUsername);
         return "Sudah diupdate bossq";
     }
 
 
     @Transactional
-    public String editResume(ResumeRequest resumeReq, Integer id){
-        Optional<Status> status = resumeRepository.findResumeStatusById(id);
+    public String editResume(ResumeRequest resumeReq, Integer id, String userUsername){
+        Optional<Status> status = resumeRepository.findResumeStatusById(id, userUsername);
 
         if(status.isPresent()){
             educationRepository.deleteByResumeId(id);
@@ -75,7 +78,7 @@ public class ResumeService {
             portofolioRepository.deleteByResumeId(id);
             skillsResumeRepository.deleteByResumeId(id);
 
-            Resume resume = convertResumeRequestToResume(resumeReq);
+            Resume resume = convertResumeRequestToResume(resumeReq, userUsername);
             resume.setId(id);
             resume.setStatus(status.get());
 
@@ -89,8 +92,8 @@ public class ResumeService {
     }
 
     @Transactional
-    public String addResume(ResumeRequest resumeReq){
-        Resume resume = convertResumeRequestToResume(resumeReq);
+    public String addResume(ResumeRequest resumeReq, String userUsername){
+        Resume resume = convertResumeRequestToResume(resumeReq, userUsername);
         resumeRepository.save(resume);
         return "Sudah ditambahkan bossq";
     }
@@ -207,7 +210,7 @@ public class ResumeService {
     }
 
 
-    private Resume convertResumeRequestToResume(ResumeRequest resumeReq){
+    private Resume convertResumeRequestToResume(ResumeRequest resumeReq, String username){
         Resume resume = Resume.builder()
                 .design(resumeReq.getDesign())
                 .name(resumeReq.getName())
@@ -219,6 +222,8 @@ public class ResumeService {
                 .linkedin(resumeReq.getContact().getLinkedin())
                 .phone(resumeReq.getContact().getPhone())
                 .status((Status.DRAFT))
+                .user(userRepository.findByUsername(username).orElseThrow(()->
+                            new ResponseStatusException(HttpStatus.BAD_REQUEST, "Skill nya ga ada cok, cek lagi daftar skill")))
                 .build();
 
         resume.setSkillsResume(resumeReq.getSkills().stream().map(skills ->

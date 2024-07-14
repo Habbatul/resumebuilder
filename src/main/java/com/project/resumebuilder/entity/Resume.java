@@ -46,4 +46,8 @@ public class Resume {
     private List<SkillsResume> skillsResume;
 
     private Status status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
