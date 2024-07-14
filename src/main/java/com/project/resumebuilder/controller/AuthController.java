@@ -1,6 +1,7 @@
 package com.project.resumebuilder.controller;
 
 import com.project.resumebuilder.dto.authreq.AuthenticationRequest;
+import com.project.resumebuilder.dto.authreq.RegisterRequest;
 import com.project.resumebuilder.dto.response.WebResponse;
 import com.project.resumebuilder.entity.User;
 import com.project.resumebuilder.service.MyUserDetailsService;
@@ -50,9 +51,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<WebResponse<String>> registerUser(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.save(user);
+    public ResponseEntity<WebResponse<String>> registerUser(@RequestBody RegisterRequest registerRequest) {
+        registerRequest.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        userService.save(registerRequest);
         return ResponseEntity.ok(WebResponse.<String>builder()
                 .data("User registered successfully")
                 .build());
