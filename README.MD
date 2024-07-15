@@ -1,4 +1,4 @@
-### Restful API for Resume (CV) Builder
+# Restful API for Resume (CV) Builder 
 - **Web App (Using this API) :** [https://cv-online-phi.vercel.app/](https://cv-online-phi.vercel.app/) <br>
 - **Swagger Documentation :** [on_progress](https://masih_proses/)
 
@@ -16,7 +16,7 @@ The RESTful API is built using Spring Boot. The technologies used in this projec
 - Maven
 - PostgreeSQL DBMS
 
-Server Tech Stack : `Nginx`, `Ubuntu`, `Docker`, `Certbot`
+**Server Tech Stack :** `Nginx`, `Ubuntu`, `Docker`, `Certbot`
 
 
 ## Feature <a name="feature"></a>
