@@ -3,6 +3,7 @@
 - **Swagger Documentation :** [on_progress](https://masih_proses/)
 
 This is a Restful API for building resumes (CVs). For an example of a frontend web repository that uses this project, you can visit repository : [https://github.com/mmulyana/cv-online](https://github.com/mmulyana/cv-online) made by **[@mmulyana](https://github.com/mmulyana)**. He created that frontend project using `ReactJS`, `TypeScript`, `React Query`, etc.
+>This RESTful API was developed within 3 days, so please understand if some features are not fully mature or if there are any bugs. However, after integration with the frontend, no bugs have been found so far. Please feel free to create an issue if you encounter any bugs.
 
 ## Tech Stack <a name="stack"></a>
 The RESTful API is built using Spring Boot. The technologies used in this project are as follows:
