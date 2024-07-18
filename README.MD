@@ -1,10 +1,9 @@
 # Restful API for Resume (CV) Builder 
-- **Web App (Using this API) : [https://cv-online-phi.vercel.app/](https://cv-online-phi.vercel.app/)**<br>
-- **Swagger Documentation : [on_progress](https://masih_proses/)**
+**Web App (Using this API) : [https://cv-online-phi.vercel.app/](https://cv-online-phi.vercel.app/)**<br>
+**Swagger Documentation : [on_progress](https://masih_proses/)**
 
 ## About <a name="about"></a>
 <p align="justify"> This is a Restful API for building resumes (CVs). For an example of a frontend web repository that uses this project, you can visit  <a href="https://github.com/mmulyana/cv-online"><b>this repository</b></a> made by <a href="https://github.com/mmulyana"><b>@mmulyana</b></a>. He created that frontend project using <code>ReactJS</code>, <code>TypeScript</code>, <code>React Query</code>, etc.</p>
-<br>
 
 >  <p align="justify">This RESTful API was developed within 3 days, so please understand if some features are not fully mature or if there are any bugs. However, after integration with the frontend, no bugs have been found so far. Please feel free to create an issue if you encounter any bugs.</p>
 
