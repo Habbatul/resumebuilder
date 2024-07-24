@@ -28,3 +28,67 @@ The MVP features we have agreed upon to ensure the application functions properl
 - Add, edit, delete resume
 - Publish resume
 - Show available skills
+
+## Example
+
+For an overview of the resume API, you can see one of the examples below. For complete details and other endpoint, please check the **[Swagger Documentation](https://resumebuilder.hqhan.my.id/swagger-ui/index.html#/)**.
+
+<b>GET</b>  <code> /resume/publish/{id} </code>
+
+Example Result :
+
+````
+{
+  "data": {
+    "id": 0,
+    "design": "string",
+    "name": "string",
+    "photo": "string",
+    "description": "string",
+    "address": "string",
+    "contact": {
+      "email": "string",
+      "portofolioWeb": "string",
+      "linkedin": "string",
+      "phone": "string"
+    },
+    "experience": [
+      {
+        "title": "string",
+        "company": "string",
+        "description": "string",
+        "startDate": "2024-07-24",
+        "endDate": "2024-07-24",
+        "link": "string"
+      }
+    ],
+    "education": [
+      {
+        "title": "string",
+        "school": "string",
+        "description": "string",
+        "startDate": "2024-07-24",
+        "endDate": "2024-07-24"
+      }
+    ],
+    "portofolio": [
+      {
+        "title": "string",
+        "role": "string",
+        "description": "string",
+        "startDate": "2024-07-24",
+        "endDate": "2024-07-24",
+        "link": "string"
+      }
+    ],
+    "skills": [
+      {
+        "idSkill": 0,
+        "name": "string",
+        "image": "string"
+      }
+    ]
+  },
+  "error": "string"
+}
+````
