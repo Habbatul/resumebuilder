@@ -28,8 +28,8 @@ public class WebConfig {
 
         return new OpenAPI()
                 .info(new Info()
-                        .title("CV Web Mulyana")
-                        .description("API untuk CV Resume portofolio mulyana")
+                        .title("CV/Resume Builder Restful API")
+                        .description("backend API for your resume builder app")
                         .version("1.0.0"))
                 .components(new Components().addSecuritySchemes("Authorization", securityScheme))
                 .addSecurityItem(securityRequirement);
